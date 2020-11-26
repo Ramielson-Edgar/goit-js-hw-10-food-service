@@ -5,9 +5,9 @@ const { $themToogleBtn, $body } = refs;
 $themToogleBtn.addEventListener('change', handelSwitchTheme);
 
 function handelSwitchTheme(e) {
-  let currentTarget = e.target.checked;
+  const { checked } = e.target;
 
-  if (currentTarget === true) {
+  if (checked) {
     $body.classList.add(Theme.DARK);
     $body.classList.remove(Theme.LIGHT);
   } else {
@@ -17,10 +17,10 @@ function handelSwitchTheme(e) {
   getCurrentValuTheme(e);
 }
 
-function getCurrentValuTheme(e) {
-  const saveCurrentValue = e.currentTarget.checked;
+function getCurrentValuTheme({ target }) {
+  const { checked } = target;
 
-  const theme = saveCurrentValue === true || false ? Theme.DARK : Theme.LIGHT;
+  const theme = checked ? Theme.DARK : Theme.LIGHT;
 
   localStorage.setItem('checked-value', theme);
 
